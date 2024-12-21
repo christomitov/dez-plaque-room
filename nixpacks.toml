@@ -10,9 +10,11 @@ cmds = [
 dependsOn = ["install"]
 cmds = [
   "cp nginx.conf /etc/nginx/nginx.conf",
-  "ls -la /app/assets/plaque-platinum.svg || echo 'Platinum file missing'",
-  "cat /app/assets/plaque-platinum.svg || echo 'Cannot read platinum file'",
-  "chmod -R 755 /app"
+  "echo 'Checking assets directory:'",
+  "ls -la /app/assets/",
+  "chmod -R 755 /app",
+  "echo 'Verifying file permissions:'",
+  "ls -la /app/"
 ]
 
 [start]

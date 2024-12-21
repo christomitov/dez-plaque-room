@@ -18,30 +18,17 @@ class RoomPlanner {
 
     async loadSVGs() {
         try {
-            // Log the current path
-            console.log('Current path:', window.location.pathname);
-            
-            // Add timestamp to prevent caching
-            const timestamp = new Date().getTime();
+            console.log('Loading SVGs...');
             const [goldResponse, platinumResponse] = await Promise.all([
                 fetch('/assets/plaque-gold.svg'),
                 fetch('/assets/plaque-platinum.svg')
             ]);
             
-            // Log detailed response info
-            console.log('Response details:', {
-                gold: {
-                    status: goldResponse.status,
-                    ok: goldResponse.ok,
-                    contentType: goldResponse.headers.get('content-type')
-                },
-                platinum: {
-                    status: platinumResponse.status,
-                    ok: platinumResponse.ok,
-                    contentType: platinumResponse.headers.get('content-type')
-                }
+            console.log('SVG responses:', {
+                gold: goldResponse.status,
+                platinum: platinumResponse.status
             });
-
+            
             if (!goldResponse.ok) {
                 throw new Error(`Failed to load gold SVG: ${goldResponse.status}`);
             }
