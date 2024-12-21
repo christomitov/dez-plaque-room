@@ -2,38 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Room Planner</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
 </head>
 <body>
-    <div class="toolbar">
-        <button id="saveBtn">Save Layout</button>
-        <button id="shareBtn">Share Layout</button>
-        <div class="toggle-container">
-            <label for="gridSnap">Snap to Grid</label>
-            <input type="checkbox" id="gridSnap" checked>
-        </div>
-    </div>
-    <div class="container">
-        <div class="assets-panel">
-            <h3>Available Items</h3>
-            <div class="asset-item" draggable="true" data-type="plaque-gold">
-                <object data="assets/plaque-gold.svg" type="image/svg+xml" width="50" height="60"></object>
-            </div>
-            <div class="asset-item" draggable="true" data-type="plaque-platinum">
-                <object data="assets/plaque-platinum.svg" type="image/svg+xml" width="50" height="60"></object>
-            </div>
-            <div class="asset-item" draggable="true" data-type="plant">🌴</div>
-        </div>
-
-        <div class="room-container">
-            <div class="grid-overlay"></div>
-            <div id="room" class="room">
-                <!-- Draggable items will be added here -->
-            </div>
-        </div>
-    </div>
-    <script src="script.js"></script>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html> 
