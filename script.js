@@ -18,11 +18,30 @@ class RoomPlanner {
 
     async loadSVGs() {
         try {
+            // Log the current path
+            console.log('Current path:', window.location.pathname);
+            
+            // Add timestamp to prevent caching
+            const timestamp = new Date().getTime();
             const [goldResponse, platinumResponse] = await Promise.all([
-                fetch('assets/plaque-gold.svg'),
-                fetch('assets/plaque-platinum.svg')
+                fetch(`/assets/plaque-gold.svg?t=${timestamp}`),
+                fetch(`/assets/plaque-platinum.svg?t=${timestamp}`)
             ]);
             
+            // Log detailed response info
+            console.log('Response details:', {
+                gold: {
+                    status: goldResponse.status,
+                    ok: goldResponse.ok,
+                    contentType: goldResponse.headers.get('content-type')
+                },
+                platinum: {
+                    status: platinumResponse.status,
+                    ok: platinumResponse.ok,
+                    contentType: platinumResponse.headers.get('content-type')
+                }
+            });
+
             if (!goldResponse.ok) {
                 throw new Error(`Failed to load gold SVG: ${goldResponse.status}`);
             }
@@ -33,10 +52,10 @@ class RoomPlanner {
             const goldText = await goldResponse.text();
             const platinumText = await platinumResponse.text();
             
-            console.log('SVG Load Status:', {
-                gold: goldResponse.status,
-                platinum: platinumResponse.status
-            });
+            // Verify SVG content
+            if (!goldText.includes('<svg') || !platinumText.includes('<svg')) {
+                throw new Error('Invalid SVG content received');
+            }
             
             this.svgCache.set('plaque-gold', goldText);
             this.svgCache.set('plaque-platinum', platinumText);
@@ -45,7 +64,7 @@ class RoomPlanner {
             // Add visual feedback for users
             document.querySelectorAll('.asset-item[data-type="plaque-platinum"]').forEach(item => {
                 item.style.opacity = '0.5';
-                item.title = 'Failed to load asset';
+                item.title = `Failed to load asset: ${error.message}`;
             });
         }
     }
