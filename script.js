@@ -24,8 +24,8 @@ class RoomPlanner {
             // Add timestamp to prevent caching
             const timestamp = new Date().getTime();
             const [goldResponse, platinumResponse] = await Promise.all([
-                fetch(`/assets/plaque-gold.svg?t=${timestamp}`),
-                fetch(`/assets/plaque-platinum.svg?t=${timestamp}`)
+                fetch('assets/plaque-gold.svg'),
+                fetch('assets/plaque-platinum.svg')
             ]);
             
             // Log detailed response info
