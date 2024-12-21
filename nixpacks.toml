@@ -3,7 +3,7 @@ nixPkgs = ["nginx"]
 
 [phases.install]
 cmds = [
-  "mkdir -p /etc/nginx /var/log/nginx /var/cache/nginx",
+  "mkdir -p /etc/nginx/conf.d /var/log/nginx /var/cache/nginx",
   "mkdir -p /usr/share/nginx/html"
 ]
 
