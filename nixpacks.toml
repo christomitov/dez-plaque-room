@@ -9,8 +9,7 @@ cmds = [
 [phases.build]
 dependsOn = ["install"]
 cmds = [
-  "cp nginx.conf /etc/nginx/nginx.conf",
-  "ls -la /app/assets"  # Debug: List assets directory
+  "cp nginx.conf /etc/nginx/nginx.conf"
 ]
 
 [start]
