@@ -23,22 +23,30 @@ class RoomPlanner {
                 fetch('assets/plaque-platinum.svg')
             ]);
             
-            if (!goldResponse.ok || !platinumResponse.ok) {
-                throw new Error('Failed to load SVG files');
+            if (!goldResponse.ok) {
+                throw new Error(`Failed to load gold SVG: ${goldResponse.status}`);
+            }
+            if (!platinumResponse.ok) {
+                throw new Error(`Failed to load platinum SVG: ${platinumResponse.status}`);
             }
             
             const goldText = await goldResponse.text();
             const platinumText = await platinumResponse.text();
             
-            console.log('Loaded SVGs:', {
-                gold: goldText.substring(0, 100),
-                platinum: platinumText.substring(0, 100)
+            console.log('SVG Load Status:', {
+                gold: goldResponse.status,
+                platinum: platinumResponse.status
             });
             
             this.svgCache.set('plaque-gold', goldText);
             this.svgCache.set('plaque-platinum', platinumText);
         } catch (error) {
             console.error('Error loading SVGs:', error);
+            // Add visual feedback for users
+            document.querySelectorAll('.asset-item[data-type="plaque-platinum"]').forEach(item => {
+                item.style.opacity = '0.5';
+                item.title = 'Failed to load asset';
+            });
         }
     }
 

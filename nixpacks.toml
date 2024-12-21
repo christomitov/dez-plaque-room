@@ -3,13 +3,15 @@ nixPkgs = ["nginx"]
 
 [phases.install]
 cmds = [
-  "mkdir -p /etc/nginx /var/log/nginx /var/cache/nginx"
+  "mkdir -p /etc/nginx /var/log/nginx /var/cache/nginx /app/assets"
 ]
 
 [phases.build]
 dependsOn = ["install"]
 cmds = [
-  "cp nginx.conf /etc/nginx/nginx.conf"
+  "cp nginx.conf /etc/nginx/nginx.conf",
+  "cp -r assets/* /app/assets/",
+  "chmod -R 755 /app/assets"
 ]
 
 [start]
