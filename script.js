@@ -20,8 +20,8 @@ class RoomPlanner {
         try {
             console.log('Loading SVGs...');
             const [goldResponse, platinumResponse] = await Promise.all([
-                fetch('/assets/plaque-gold.svg'),
-                fetch('/assets/plaque-platinum.svg')
+                fetch('assets/plaque-gold.svg'),
+                fetch('assets/plaque-platinum.svg')
             ]);
             
             console.log('SVG responses:', {
