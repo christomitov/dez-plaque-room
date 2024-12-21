@@ -186,6 +186,6 @@ body {
     background: #f8f9fa;
 }
 
-+.asset-item svg {
+.asset-item svg {
    pointer-events: none;
 } 
