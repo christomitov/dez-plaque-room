@@ -12,7 +12,10 @@ cmds = [
   "cp nginx.conf /etc/nginx/nginx.conf",
   "mkdir -p /app/assets",
   "cp -f assets/* /app/assets/ || true",
-  "chmod -R 755 /app"
+  "chmod -R 755 /app",
+  "ls -la /app/assets",
+  "cat /app/assets/plaque-platinum.svg || echo 'Platinum file missing'",
+  "cat /app/assets/plaque-gold.svg || echo 'Gold file missing'"
 ]
 
 [start]
